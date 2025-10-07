@@ -1,7 +1,7 @@
 import { createClient } from '@supabase/supabase-js'
 import { NextResponse } from 'next/server'
 
-const MATCH_THRESHOLD = 0.92; 
+const MATCH_THRESHOLD = 0.94; 
 
 export async function POST(request: Request) {
   const { face_embedding } = await request.json();
