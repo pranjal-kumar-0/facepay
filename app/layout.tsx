@@ -15,13 +15,16 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "FacePay - Face Recognition Scanner",
   description: "Modern face scanning application with camera integration",
-  viewport: {
+};
+
+export function generateViewport() {
+  return {
     width: "device-width",
     initialScale: 1,
     maximumScale: 1,
     userScalable: false,
-  },
-};
+  };
+}
 
 export default function RootLayout({
   children,
@@ -30,9 +33,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
       </body>
     </html>

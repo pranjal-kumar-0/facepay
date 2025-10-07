@@ -50,7 +50,7 @@ export default function FaceScanner({ onFaceDetected, onError }: FaceScannerProp
         try {
           const detection = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor();
           if (detection) {
-            console.log("Face vector embeddings:", detection.descriptor);
+            console.log(detection.descriptor);
             onFaceDetected?.(detection.descriptor);
           } else {
             console.log("No face detected");

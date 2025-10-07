@@ -1,25 +1,16 @@
-"use client";
+import Link from 'next/link';
+import React from 'react';
 
-import FaceScanner from "@/components/FaceScanner";
-import ScannerLayout from "@/components/ScannerLayout";
-
-export default function Home() {
-  const handleFaceDetected = (descriptor: Float32Array) => {
-    // Handle the face detection result
-    console.log("Face detected with descriptor:", descriptor);
-  };
-
-  const handleError = (error: Error) => {
-    // Handle any errors during face detection
-    console.error("Face detection error:", error);
-  };
-
+const Page = () => {
   return (
-    <ScannerLayout>
-      <FaceScanner 
-        onFaceDetected={handleFaceDetected}
-        onError={handleError}
-      />
-    </ScannerLayout>
+    <div className="min-h-screen bg-gray-900 flex items-center justify-center">
+      <Link href="/scan">
+        <button className="px-6 py-3 bg-green-800 hover:bg-green-700 text-white font-semibold rounded-lg shadow-lg transition-colors duration-200">
+          Go to Dashboard
+        </button>
+      </Link>
+    </div>
   );
-}
+};
+
+export default Page;
