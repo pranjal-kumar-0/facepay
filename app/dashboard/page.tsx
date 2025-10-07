@@ -59,7 +59,7 @@ const DashboardPage = async () => {
       <div className="w-full max-w-5xl text-center">
         {/* Header Section (centered) */}
         <div className="mb-12">
-          <h1 className="text-3xl md:text-4xl font-bold text-emerald-400">// DASHBOARD</h1>
+          <h1 className="text-3xl md:text-4xl font-bold text-emerald-400">{'// DASHBOARD'}</h1>
           <p className="text-gray-500 mt-2">Select an operation to proceed</p>
         </div>
 
