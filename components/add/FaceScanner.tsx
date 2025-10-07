@@ -116,9 +116,7 @@ export default function FaceScanner({ onFaceDetected, onError }: FaceScannerProp
 
       {/* Capture controls */}
       <div className="absolute bottom-0 left-0 right-0 pt-6 md:pt-8 pb-8 md:pb-12 flex flex-col items-center space-y-4 md:space-y-6 pointer-events-auto">
-        <p className="text-sm md:text-base text-zinc-400 font-mono text-center">
-          align • focus • capture
-        </p>
+
         
         <button
           onClick={capture}

@@ -43,7 +43,7 @@ const DashboardPage = async () => {
     {
       title: 'Scan Face',
       description: 'Authenticate using facial recognition to access secure areas.',
-      link: '/scan',
+      link: '/dashboard/scan',
       icon: <ScanFaceIcon className="h-12 w-12 mx-auto text-gray-500 group-hover:text-emerald-400 transition-colors" />,
     },
     {
