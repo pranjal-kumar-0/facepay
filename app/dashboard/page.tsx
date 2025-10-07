@@ -33,6 +33,8 @@ const DashboardPage = async () => {
     redirect('/login');
   }
 
+  const user = session.user;
+
   const options = [
     {
       title: 'Scan Face',
@@ -53,6 +55,25 @@ const DashboardPage = async () => {
       {/* Logout positioned top-right */}
       <div className="absolute top-4 right-4">
         <Logout />
+      </div>
+
+      {/* User info */}
+      <div className="absolute top-4 left-4 z-20">
+        <div className="flex items-center space-x-3">
+          {user?.user_metadata?.avatar_url ? (
+            <img
+              src={user.user_metadata.avatar_url}
+              alt={user.user_metadata.full_name || user.email}
+              className="w-10 h-10 rounded-full object-cover border-2 border-emerald-400"
+            />
+          ) : (
+            <div className="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center text-sm text-zinc-400 border-2 border-zinc-700">U</div>
+          )}
+          <div className="text-left">
+            <p className="text-xs text-gray-400">Signed in as</p>
+            <p className="font-semibold text-emerald-400 text-sm">{user?.user_metadata?.full_name || user?.email}</p>
+          </div>
+        </div>
       </div>
 
       {/* Centered content container */}

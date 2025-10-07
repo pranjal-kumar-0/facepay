@@ -25,7 +25,7 @@ export async function POST(request: Request) {
 
   const { data, error } = await supabase
     .from('faces')
-    .insert(newFaceData)
+    .upsert(newFaceData, { onConflict: 'user_id' })
     .select()
 
   if (error) {
