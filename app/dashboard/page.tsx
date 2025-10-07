@@ -25,12 +25,6 @@ const AddFaceIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-const ModifyInfoIcon = ({ className }: { className?: string }) => (
-  <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M12 20h9" />
-    <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
-  </svg>
-);
 
 const DashboardPage = async () => {
   const supabase = await createClient();
@@ -52,12 +46,6 @@ const DashboardPage = async () => {
       link: '/dashboard/add',
       icon: <AddFaceIcon className="h-12 w-12 mx-auto text-gray-500 group-hover:text-emerald-400 transition-colors" />,
     },
-    {
-      title: 'Modify Info',
-      description: 'Update your personal details or re-scan your facial data.',
-      link: '/modify-info',
-      icon: <ModifyInfoIcon className="h-12 w-12 mx-auto text-gray-500 group-hover:text-emerald-400 transition-colors" />,
-    },
   ];
 
   return (
@@ -76,7 +64,7 @@ const DashboardPage = async () => {
         </div>
 
         {/* Options Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
           {options.map((option) => (
             <Link
               key={option.title}
