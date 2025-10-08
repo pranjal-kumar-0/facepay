@@ -74,7 +74,7 @@ yarn install
       created_at timestamp with time zone NOT NULL DEFAULT now(),
       user_id uuid NOT NULL,
       email text NULL,
-      face_embedding vector(128) NULL, -- Match the dimension of your model
+      face_embedding vector(128) NULL,
       name text NULL,
       upi_id text NULL,
       CONSTRAINT faces_pkey PRIMARY KEY (id),
@@ -120,6 +120,7 @@ Create a file named `.env.local` in the root of your project and add your Supaba
 ```
 NEXT_PUBLIC_SUPABASE_URL=your-supabase-project-url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
+SUPABASE_SERVICE_ROLE_KEY=your-supabase-service-role key
 ```
 
 ### 5\. Run the Development Server
