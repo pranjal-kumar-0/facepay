@@ -15,6 +15,8 @@ export default function HomePage() {
   const [searchStatus, setSearchStatus] = useState('');
   const [matchedUser, setMatchedUser] = useState<MatchedUser | null>(null);
   const [error, setError] = useState('');
+  
+  const [amount, setAmount] = useState('');
 
   const handleFaceDetected = async (descriptor: Float32Array) => {
     if (isSearching) return;
@@ -23,6 +25,8 @@ export default function HomePage() {
     setSearchStatus('Verifying face...');
     setMatchedUser(null);
     setError('');
+    
+    setAmount('');
 
     try {
       const response = await fetch('/api/find_match', {
@@ -75,21 +79,47 @@ export default function HomePage() {
           {searchStatus && <p className="text-lg font-mono">{searchStatus}</p>}
           
           {matchedUser && (
-            <div className="mt-4 w-full text-left bg-zinc-800 p-4 rounded-md flex flex-col items-start space-y-1">
+            <div className="mt-4 w-full text-left bg-zinc-800 p-4 rounded-md flex flex-col items-start space-y-2">
               <p><strong>Name:</strong> {matchedUser.name}</p>
-              <p><strong>Email:</strong> {matchedUser.email}</p>
               <p><strong>UPI ID:</strong> {matchedUser.upi_id}</p>
               <p><strong>Similarity:</strong> {(matchedUser.similarity * 100).toFixed(2)}%</p>
 
+              <div className="w-full pt-2">
+                <label htmlFor="amount" className="block text-sm font-medium text-zinc-300">
+                  Enter Amount (₹)
+                </label>
+                <input
+                  type="number"
+                  id="amount"
+                  value={amount}
+                  onChange={(e) => setAmount(e.target.value)}
+                  className="mt-1 p-2 w-full border rounded-md shadow-sm bg-zinc-700 border-zinc-600 text-white placeholder-zinc-400"
+                  placeholder="100.00"
+                />
+              </div>
+
               <a
-                href={`upi://pay?pa=${matchedUser.upi_id}&pn=${encodeURIComponent(matchedUser.name)}`}
-                className="mt-4 w-full text-center bg-emerald-500 text-white font-bold py-2 px-4 rounded hover:bg-emerald-600 transition-colors"
+                href={
+                  amount && parseFloat(amount) > 0
+                    ? `upi://pay?pa=${matchedUser.upi_id}&pn=${encodeURIComponent(matchedUser.name)}&am=${amount}&cu=INR&tn=Payment via Face Recognition`
+                    : '#'
+                }
+                onClick={(e) => {
+                  if (!amount || parseFloat(amount) <= 0) {
+                    e.preventDefault();
+                    alert("Please enter a valid amount to pay.");
+                  }
+                }}
+                className={`mt-4 w-full text-center font-bold py-2 px-4 rounded transition-colors ${
+                  !amount || parseFloat(amount) <= 0
+                    ? 'bg-gray-500 cursor-not-allowed'
+                    : 'bg-emerald-500 hover:bg-emerald-600'
+                }`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Pay via UPI
+                Pay ₹{amount || '...'} via UPI
               </a>
-
             </div>
           )}
 
