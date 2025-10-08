@@ -1,5 +1,3 @@
-Of course. Here is the complete `README.md` for your project.
-
 # FacePay UPI
 
 A modern web application demonstrating a peer-to-peer payment concept where users can retrieve a recipient's UPI ID simply by scanning their face. Built with Next.js, React, and Supabase.
